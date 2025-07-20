@@ -44,18 +44,36 @@ Se quiser criar as tabelas manualmente (caso não esteja usando Docker), utilize
 
 ```sql
 CREATE TABLE IF NOT EXISTS products (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  name VARCHAR(255) NOT NULL,
-  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
 CREATE TABLE IF NOT EXISTS stock (
-  id INT AUTO_INCREMENT PRIMARY KEY,
-  product_id INT NOT NULL,
-  variation VARCHAR(255) NOT NULL,
-  quantity INT DEFAULT 0,
-  price DECIMAL(10,2) NOT NULL,
-  FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    product_id INT NOT NULL,
+    variation VARCHAR(255) NOT NULL,
+    quantity INT DEFAULT 0,
+    price DECIMAL(10,2) NOT NULL,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (product_id) REFERENCES products(id) ON DELETE CASCADE
+);
+
+CREATE TABLE IF NOT EXISTS coupons (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    code VARCHAR(100) UNIQUE,
+    discount DECIMAL(10,2),
+    expires_at DATE,
+    min_subtotal DECIMAL(10,2)
+);
+
+CREATE TABLE IF NOT EXISTS orders (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    total DECIMAL(10,2),
+    shipping_cost DECIMAL(10,2),
+    cep VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    status VARCHAR(50) NOT NULL DEFAULT 'pending'
 );
 ```
 
