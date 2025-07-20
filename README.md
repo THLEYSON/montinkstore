@@ -1,14 +1,22 @@
-# 🛍️ PHP MVC Inventory System
+# 🛍️ PHP MVC Inventory & Checkout System
 
-A basic inventory and product management system using PHP, MVC, Docker, and Bootstrap.
+A complete inventory and shopping cart system built with PHP, MVC architecture, Docker, and Bootstrap.
 
 ## 🚀 Features
 
-- Product registration with name, variations, quantity, and price per variation
-- Inventory control with stock updates
-- Update product names, prices, and variations
-- Delete products and their variations
-- Flash messages and user-friendly interface with Bootstrap
+- ✅ Product registration with name, variations, quantity, and price per variation
+- ✅ Inventory control with dynamic stock management
+- ✅ Update product names, prices, quantities, and variations
+- ✅ Delete products and their variations
+- ✅ Shopping cart (session-based)
+- ✅ Freight rules based on subtotal:
+  - Subtotal < R$52,00: R$20,00
+  - R$52,00 ~ R$166,59: R$15,00
+  - R$200,00+: **Free shipping**
+- ✅ Discount coupons with expiration and subtotal rules
+- ✅ Checkout with stock validation and automatic stock deduction
+- ✅ Email confirmation using PHPMailer or Postmark (configurable)
+- ✅ Flash messages and clean UI with Bootstrap 5
 
 ## 🧰 Technologies
 
@@ -17,7 +25,7 @@ A basic inventory and product management system using PHP, MVC, Docker, and Boot
 - MySQL
 - Docker & Docker Compose
 - Bootstrap 5
-- MVC Architecture
+- MVC Architecture (custom, lightweight)
 
 ## ⚙️ How to Run
 
@@ -36,11 +44,12 @@ docker-compose up -d
 
 Access the app: [http://localhost:8080](http://localhost:8080)
 
-### 3. Configure o banco de dados
+### 3. Configure the database
 
-O banco de dados é configurado automaticamente ao subir o ambiente Docker. Ao executar o comando `docker-compose up -d`, o MySQL será iniciado e o banco estará disponível para acesso via **DBeaver** (ou outro cliente MySQL).
+If you're using Docker, the MySQL database will be set up automatically with the configured volumes.  
+To access it manually via **DBeaver** or any MySQL client, use the credentials from `docker-compose.yml`.
 
-Se quiser criar as tabelas manualmente (caso não esteja usando Docker), utilize o SQL abaixo:
+If you prefer to set it up manually, use the SQL schema below:
 
 ```sql
 CREATE TABLE IF NOT EXISTS products (
@@ -77,7 +86,7 @@ CREATE TABLE IF NOT EXISTS orders (
 );
 ```
 
-> ✅ **Observação:** Ao iniciar o projeto com Docker, o banco será automaticamente criado e acessível pelo DBeaver através das credenciais configuradas no `docker-compose.yml`.
+> ✅ **Note:** If using Docker, you don't need to run the SQL manually — the database will be initialized automatically.
 
 ## 📂 Folder structure
 
@@ -89,10 +98,21 @@ src/
 ├── Support/
 ├── View/
 │   ├── home/
-│   ├── products/
-│   └── stock/
+│   ├── product/
+│   ├── stock/
+│   ├── cart/
+│   └── coupon/
 └── components/
 ```
+
+## 📫 Email Configuration
+
+Checkout confirmation emails are sent to the buyer's email address.
+
+- Default: PHPMailer (SMTP)
+- Optional: Postmark integration (API key required)
+
+Update the configuration in `src/Support/Mailer.php` as needed.
 
 ## 📄 License
 
