@@ -1,0 +1,48 @@
+# Sistema de controle de produtos com Docker + PHP
+
+# Ignorar arquivos do sistema
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+logs/
+storage/logs/
+
+# Arquivos do Composer
+/vendor/
+
+# Arquivos de cache
+*.cache
+*.tmp
+*.bak
+
+# Ambiente local
+.env
+.env.*.local
+
+# Docker
+docker-compose.override.yml
+docker/db/data/
+docker/apache/logs/
+
+# Configuração de IDEs
+.vscode/
+.idea/
+
+# Cache do PHPStorm
+/.phpstorm.meta.php
+
+# Arquivos de banco de dados locais
+*.sql
+*.sqlite
+*.sqlite3
+
+# Node (caso use no futuro para frontend)
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Cache de view ou blade (se usar futuramente com Laravel ou similar)
+storage/framework/views/*.php

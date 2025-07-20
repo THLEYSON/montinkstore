@@ -1,0 +1,21 @@
+{
+    "name": "montink/montink-store",
+    "autoload": {
+        "psr-4": {
+            "App\\Controllers\\": "src/Controller/",
+            "App\\Models\\": "src/Model/",
+            "App\\Support\\": "src/Support/",
+            "App\\Middleware\\": "src/Middleware/",
+            "Src\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "THLEYSON",
+            "email": "thleysonsantos@hotmail.com"
+        }
+    ],
+    "require": {
+        "wildbit/postmark-php": "^7.0"
+    }
+}
